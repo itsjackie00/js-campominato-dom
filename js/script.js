@@ -95,3 +95,18 @@ function drawSquare(dim, content, bombs, maxscore){
     },{ once: true });
     return newSquare;
 }
+
+// FUNZIONE PER CREARE LE BOMBE
+
+function generateBombs(numCells){
+    let bomsArray = [];
+    let counter = 0;
+    while(bomsArray.length < NUM_BOMBS && counter < 100){
+      let bomb = getRndInteger(1, numCells);
+      if(!bomsArray.includes(bomb)) {
+        bomsArray.push(bomb);
+      }
+      counter++;
+    }  
+    return bomsArray;
+  }
