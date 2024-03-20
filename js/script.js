@@ -16,11 +16,11 @@
 
 //WRAPPER
 const boxWrapper = document.createElement('div');
-console.log(boxWrapper);
+//console.log(boxWrapper);
 
 boxWrapper.className = 'd-flex justify-content-center align-content-center m-auto flex-wrap';
 boxWrapper.setAttribute('id', 'box');
-console.log(boxWrapper);
+//console.log(boxWrapper);
 
 //VARIABILI
 
@@ -31,7 +31,7 @@ let elBtn = document.querySelector('.btn.btn-outline-dark');
 // console.log(boxes);
 
 let numBox = 100;
-console.log(numBox);
+//console.log(numBox);
 
 
 /* Button function */
@@ -45,6 +45,7 @@ elBtn.addEventListener('click', function () {
 
         square.addEventListener('click', function () {
             square.classList.add('clicked');
+            console.log(i + 1);
         })
 
         boxWrapper.appendChild(square);
