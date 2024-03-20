@@ -1,0 +1,23 @@
+/* my utilities */
+.jw-debug {
+    border: 1px solid blue;
+}
+
+/* GENERAL */
+body {
+    font-family: "Roboto Serif", serif;
+}
+
+#game {
+   width: 1000px;
+}
+
+.box {
+    width: 80px;
+    height: 80px;
+    border: 2px solid black;
+    margin: 5px;
+}
+.clicked{
+    background-color: cadetblue;
+}
