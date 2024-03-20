@@ -18,6 +18,9 @@
 const levelEl = document.getElementById("level");
 console.log(levelEl);
 
+let elBtn = document.querySelector('.btn.btn-outline-dark');
+console.log(elBtn);
+
 levelEl.addEventListener("change", game);
 let score = 0;
 const NUM_BOMBS = 16;
@@ -25,7 +28,7 @@ let gameOver = false;
 
 // FUNZIONE DEL GIOCO
 
-function game() {
+elBtn.addEventListener('click', function () {
 
  const playgroundEl = document.getElementById('playground');
  playgroundEl.innerHTML = '';
@@ -48,7 +51,7 @@ function game() {
    playgroundEl.appendChild(square);
  }
 
-}
+})
 
 // SELEZIONE LIVELLO
 
@@ -80,12 +83,14 @@ function drawSquare(dim, content, bombs, maxscore){
     <span class="invisible">${content}</span>
     `;
     newSquare.addEventListener('click', function(){
-      // if(!gameOver){ //se non è gameOver | se gameOver è false gameOver === false | gameOver !== true
+
         if(gameOver) return;
+
         if(bombs.includes(content)){
           newSquare.classList.add('unsafe'); 
           newSquare.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
           endGame(true, maxscore, bombs);
+          
         } else {
           newSquare.classList.add('safe');
           endGame(false, maxscore, bombs);         
@@ -109,4 +114,30 @@ function generateBombs(numCells){
       counter++;
     }  
     return bomsArray;
+  }
+
+  function endGame(end, maxscore,bombs){
+    const messageEl = document.getElementById('result');
+    let message = '';
+    if(end) {
+      gameOver = true;
+      message += 'Hai perso ritenta !!!!';
+    } else {
+      score++;
+      if (score === maxscore){
+        message += 'Hai vinto !!!!';
+        gameOver = true;
+      }
+    }
+    if(gameOver){
+      const boxes = document.querySelectorAll('.box');
+      for(let i = 0; i < boxes.length; i++){
+        if(bombs.includes(i + 1)){
+          boxes[i].classList.add('unsafe'); 
+          boxes[i].innerHTML = `<i class="fa-solid fa-bomb"></i>`;
+        }
+      }
+    }
+    message += `<h4>Il tuo punteggio è: ${score}</h4>`;
+    messageEl.innerHTML = message;
   }
