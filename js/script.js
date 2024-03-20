@@ -92,7 +92,7 @@ function drawSquare(dim, content, bombs, maxscore){
           endGame(true, maxscore, bombs);
           
         } else {
-          newSquare.classList.add('safe');
+          newSquare.classList.add('clicked');
           endGame(false, maxscore, bombs);         
         } 
       //}
@@ -121,11 +121,19 @@ function generateBombs(numCells){
     let message = '';
     if(end) {
       gameOver = true;
-      message += 'Hai perso ritenta !!!!';
+      message += `
+      <div class="px-3 fs-1 pt-3 text-danger">
+      Hai perso !!!
+      </div>
+      `;
     } else {
       score++;
       if (score === maxscore){
-        message += 'Hai vinto !!!!';
+        message += `
+        <div class="px-3 fs-1 pt-3 text-success">
+        Hai vinto !!!
+        </div>
+        `;
         gameOver = true;
       }
     }
@@ -134,10 +142,11 @@ function generateBombs(numCells){
       for(let i = 0; i < boxes.length; i++){
         if(bombs.includes(i + 1)){
           boxes[i].classList.add('unsafe'); 
-          boxes[i].innerHTML = `<i class="fa-solid fa-bomb"></i>`;
+          boxes[i].innerHTML = `<i class="fa-solid fa-bomb fs-2 d-flex justify-content-center"></i>`;
+          console.log(boxes.value);
         }
       }
     }
-    message += `<h4>Il tuo punteggio è: ${score}</h4>`;
+    message += `<h2 class="pt-3 px-3 ">Il tuo punteggio è: ${score} </h2>`;
     messageEl.innerHTML = message;
   }
