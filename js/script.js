@@ -70,3 +70,28 @@ function setLevel(){
       return cellsNumber;
 }
 
+// FUNZIONE PER CREARE I QUADRATINI
+
+function drawSquare(dim, content, bombs, maxscore){
+    const newSquare = document.createElement('div');
+    newSquare.classList.add('box');
+    newSquare.style.setProperty('--ms-box-dim', `calc(500px / ${dim} )`);
+    newSquare.innerHTML = `
+    <span class="invisible">${content}</span>
+    `;
+    newSquare.addEventListener('click', function(){
+      // if(!gameOver){ //se non è gameOver | se gameOver è false gameOver === false | gameOver !== true
+        if(gameOver) return;
+        if(bombs.includes(content)){
+          newSquare.classList.add('unsafe'); 
+          newSquare.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
+          endGame(true, maxscore, bombs);
+        } else {
+          newSquare.classList.add('safe');
+          endGame(false, maxscore, bombs);         
+        } 
+      //}
+      
+    },{ once: true });
+    return newSquare;
+}
