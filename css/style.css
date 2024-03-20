@@ -21,3 +21,6 @@ body {
 .clicked{
     background-color: cadetblue;
 }
+.unsafe{
+    background-color: red;
+}
