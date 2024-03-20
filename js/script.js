@@ -14,3 +14,11 @@
 </div> 
 */
 
+// VARIABILI
+const levelEl = document.getElementById("level");
+console.log(levelEl);
+
+levelEl.addEventListener("change", game);
+let score = 0;
+const NUM_BOMBS = 16;
+let gameOver = false;
