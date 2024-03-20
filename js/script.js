@@ -22,3 +22,51 @@ levelEl.addEventListener("change", game);
 let score = 0;
 const NUM_BOMBS = 16;
 let gameOver = false;
+
+// FUNZIONE DEL GIOCO
+
+function game() {
+
+ const playgroundEl = document.getElementById('playground');
+ playgroundEl.innerHTML = '';
+ const messageEl = document.getElementById('result');
+ messageEl.innerHTML = '';
+ score = 0;
+ gameOver = false;
+
+ let cellsPerRow;
+ let cellsNumber = setLevel();
+ let bombList = generateBombs(cellsNumber);
+ 
+ console.log(bombList);
+ cellsPerRow  = Math.sqrt(cellsNumber);
+
+ const max_attempt = cellsNumber - NUM_BOMBS;
+ 
+ for(let i = 1; i <= cellsNumber; i++){
+   const square = drawSquare(cellsPerRow, i, bombList, max_attempt);
+   playgroundEl.appendChild(square);
+ }
+
+}
+
+// SELEZIONE LIVELLO
+
+function setLevel(){
+    const level = levelEl.value;    
+    let cellsNumber;
+    switch (level) {
+        case "easy":
+        // default:
+          cellsNumber = 100;
+          break;
+        case "medium":
+            cellsNumber = 81;
+            break;
+        case "crazy":
+            cellsNumber = 49;
+            break;
+      }
+      return cellsNumber;
+}
+
